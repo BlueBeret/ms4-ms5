@@ -10,7 +10,7 @@ This is a project for Scalable App Development class.
 - run rabbitmq service  
 `docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3.9-management`
 - clone the repo and change to project directory  
-`git clone && cd ms4-ms5`
+`git clone https://github.com/BlueBeret/ms4-ms5.git && cd ms4-ms5`
 - install dependencies  
 `npm install`
 

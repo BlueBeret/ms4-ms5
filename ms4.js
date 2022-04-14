@@ -1,4 +1,21 @@
-var amqp = require('amqplib/callback_api')
+const amqp = require('amqplib/callback_api')
+const express = require('express')
+const app = express()
+const path = require('path')
+const port = 5004
+const bodyParser = require('body-parser')
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+app.post('/', (req, res) => {
+    sendMessageToQueue('checkout', req.body.msg)
+    res.send("Checkout anda sedang diproses")
+})
+
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '/index.html'));
+})
 
 const sendMessageToQueue = (queueName, msg) => {
     amqp.connect('amqp://localhost', function (error0, connection) {
@@ -26,6 +43,8 @@ const sendMessageToQueue = (queueName, msg) => {
     })
 }
 
-sendMessageToQueue('hello', "Houston ada masalah")
-sendMessageToQueue('hello', "Houston masalah terselesaikan")
 
+
+app.listen(port, () => {
+    console.log(`Example app listening on port ${port}`)
+})

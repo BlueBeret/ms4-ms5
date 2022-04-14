@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "amqplib": "^0.8.0",
+    "body-parser": "^1.20.0",
     "express": "^4.17.3"
   },
   "name": "ms4-ms5",

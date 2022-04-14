@@ -1,5 +1,15 @@
 {
   "dependencies": {
-    "amqplib": "^0.8.0"
-  }
+    "amqplib": "^0.8.0",
+    "express": "^4.17.3"
+  },
+  "name": "ms4-ms5",
+  "version": "1.0.0",
+  "main": "ms4.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }

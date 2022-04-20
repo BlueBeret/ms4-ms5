@@ -46,5 +46,5 @@ const sendMessageToQueue = (queueName, msg) => {
 
 
 app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
+    console.log(`Service 4 listening on port ${port}`)
 })

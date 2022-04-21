@@ -9,13 +9,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.post('/', (req, res) => {
-    sendMessageToQueue('checkout', req.body.msg)
+    sendMessageToQueue('checkout', req.body.cart)
     res.send("Checkout anda sedang diproses")
 })
 
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '/index.html'));
-})
+// app.get('/', (req, res) => {
+//     res.sendFile(path.join(__dirname, '/index.html'));
+// })
 
 const sendMessageToQueue = (queueName, msg) => {
     amqp.connect('amqp://localhost', function (error0, connection) {
@@ -34,12 +34,6 @@ const sendMessageToQueue = (queueName, msg) => {
             channel.sendToQueue(queue, Buffer.from(msg))
             console.log(" [x] Sent %s => %s", msg, queue)
         })
-
-
-        setTimeout(function () {
-            connection.close()
-            process.exit(0)
-        }, 500)
     })
 }
 

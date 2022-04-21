@@ -18,6 +18,11 @@ app.post('/', (req, res) => {
 // })
 
 const sendMessageToQueue = (queueName, msg) => {
+    const id = msg.split(',').map(x => parseInt(x))
+    const payload = {
+        action: 'checkout',
+        products: id
+    }
     amqp.connect('amqp://localhost', function (error0, connection) {
         if (error0) {
             throw error0;
@@ -31,8 +36,8 @@ const sendMessageToQueue = (queueName, msg) => {
             channel.assertQueue(queue, {
                 durable: false
             })
-            channel.sendToQueue(queue, Buffer.from(msg))
-            console.log(" [x] Sent %s => %s", msg, queue)
+            channel.sendToQueue(queue, Buffer.from(JSON.stringify(payload)))
+            console.log(" [x] Sent %s => %s", payload, queue)
         })
     })
 }
